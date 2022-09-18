@@ -10,5 +10,7 @@
         void OnActivate();
         //卡牌的弃牌技能/通常为右键弃牌触发效果
         void OnDiscord();
+        //切换卡牌时触发效果
+        void OnSwitch();
     }
 }

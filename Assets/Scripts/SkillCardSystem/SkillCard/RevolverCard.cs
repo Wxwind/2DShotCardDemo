@@ -1,7 +1,10 @@
-﻿namespace SkillCardSystem
+﻿namespace SkillCardSystem.SkillCard
 {
-    public class SkillCard:CardBase
+    public class RevolverCard:SkillCardBase
     {
+        private bool isCanShot;
+        private Timer m_shotTimer;
+        
         public override void OnInit()
         {
             throw new System.NotImplementedException();
@@ -18,6 +21,11 @@
         }
 
         public override void OnDiscord()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void OnSwitch()
         {
             throw new System.NotImplementedException();
         }

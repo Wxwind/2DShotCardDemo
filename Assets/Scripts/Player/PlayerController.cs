@@ -18,10 +18,9 @@ public class PlayerController : MonoBehaviour
     [ShowInInspector, ReadOnly] private bool m_isCanJump=true;
     [ShowInInspector, ReadOnly] private bool m_isCanActivateCard=true;
     [ShowInInspector, ReadOnly] private bool m_isCanDiscordCard=true;
+    [ShowInInspector, ReadOnly] private bool m_isCanSwitchCard=true;
 
-    [Title("卡牌能力")] 
-    [SerializeField] private SkillCardManager m_skillCardManager;
-    [ShowInInspector, ReadOnly] private ICard m_ownCard;
+    //[Title("卡牌能力")]
 
     private Rigidbody2D m_rb;
     private CollDetection m_collDect;
@@ -62,6 +61,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         ActivateCard();
         DiscordCard();
+        SwitchSkillCard();
     }
 
     private void LRMove()
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         if (!m_isCanActivateCard) return;
         if (Input.GetKey(KeyCode.K))
         {
-            m_ownCard?.OnActivate();
+            SkillCardManager.instance.ActivateCard();
         }
     }
 
@@ -108,7 +108,16 @@ public class PlayerController : MonoBehaviour
         if (!m_isCanDiscordCard) return;
         if (Input.GetKeyDown(KeyCode.L))
         {
-            m_ownCard?.OnDiscord();
+            SkillCardManager.instance.DiscordCard();
+        }
+    }
+
+    private void SwitchSkillCard()
+    {
+        if (!m_isCanSwitchCard) return;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SkillCardManager.instance.SwitchSkillCard();
         }
     }
 }

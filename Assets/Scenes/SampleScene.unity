@@ -343,7 +343,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1000750555}
   - {fileID: 419608971}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -433,6 +432,7 @@ Transform:
   m_Children:
   - {fileID: 1630687941}
   - {fileID: 1269099440}
+  - {fileID: 1000750555}
   m_Father: {fileID: 149856881}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -456,7 +456,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &291250747
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -498,7 +498,6 @@ MonoBehaviour:
   LRMoveSpeed: 5
   LRAirMoveSpeed: 3
   jumpSpeed: 6
-  m_skillCardManager: {fileID: 0}
 --- !u!114 &291250749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +547,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 226721333}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &419608972
 MonoBehaviour:
@@ -1895,12 +1894,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000750554}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.914556, y: 0.12295082, z: 0}
+  m_LocalScale: {x: 1.473188, y: 0.6830601, z: 1}
   m_Children: []
-  m_Father: {fileID: 226721333}
-  m_RootOrder: 0
+  m_Father: {fileID: 291250745}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1000750556
 MonoBehaviour:
@@ -1917,15 +1916,16 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 266852507037414889, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: m_cardsData
+    - Name: m_cardsPreData
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[SkillCardSystem.ICard,
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[SkillCardSystem.SkillCardBase,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
@@ -1936,7 +1936,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Revolver
+    - Name: $v
+      Entry: 10
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -1955,6 +1967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a4937e0ad82c948973e987fa9e9529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxCardCount: 0
 --- !u!1 &1233512336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,36 +2138,6 @@ Transform:
   m_Father: {fileID: 291250745}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1807545506
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1807545507}
-  m_Layer: 0
-  m_Name: Card
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1807545507
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807545506}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1935496226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,3 +2256,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &266852505317523789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414894, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266852507037414895, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
+      propertyPath: m_Name
+      value: RevolverCard
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f4c9066352a56a46a3517a836765b79, type: 3}
