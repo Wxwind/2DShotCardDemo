@@ -22,13 +22,13 @@ public class PlayerController : MonoBehaviour
 
     //[Title("卡牌能力")]
 
-    private Rigidbody2D m_rb;
-    private CollDetection m_collDect;
+    private Rigidbody2D m_rbComp;
+    private CollDetection m_collDectComp;
 
     private void Awake()
     {
-        m_rb = GetComponent<Rigidbody2D>();
-        m_collDect = GetComponent<CollDetection>();
+        m_rbComp = GetComponent<Rigidbody2D>();
+        m_collDectComp = GetComponent<CollDetection>();
     }
 
     private void Update()
@@ -68,29 +68,29 @@ public class PlayerController : MonoBehaviour
     {
         if (!m_isCanMove) return;
 
-        if (m_collDect.OnGround) //地面移动
+        if (m_collDectComp.OnGround) //地面移动
         {
             if (xInput == 0)
             {
-                m_rb.velocity = new Vector2(0, m_rb.velocity.y);
+                m_rbComp.velocity = new Vector2(0, m_rbComp.velocity.y);
             }
             else
             {
-                m_rb.velocity = new Vector2(xInput * LRMoveSpeed, m_rb.velocity.y);
+                m_rbComp.velocity = new Vector2(xInput * LRMoveSpeed, m_rbComp.velocity.y);
             }
         }
         else //空中左右移动
         {
-            m_rb.velocity = new Vector2(xInput * LRAirMoveSpeed, m_rb.velocity.y);
+            m_rbComp.velocity = new Vector2(xInput * LRAirMoveSpeed, m_rbComp.velocity.y);
         }
     }
 
     private void Jump()
     {
         if (!m_isCanJump) return;
-        if (Input.GetKey(KeyCode.J) && m_collDect.OnGround)
+        if (Input.GetKey(KeyCode.J) && m_collDectComp.OnGround)
         {
-            m_rb.velocity = new Vector2(m_rb.velocity.x, jumpSpeed);
+            m_rbComp.velocity = new Vector2(m_rbComp.velocity.x, jumpSpeed);
         }
     }
 
