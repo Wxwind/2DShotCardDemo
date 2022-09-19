@@ -7,7 +7,7 @@ namespace SkillCardSystem.Bullet
 {
     public abstract class BulletBase:MonoBehaviour
     {
-        [Title("设置")] 
+        [Title("Base基础设置")] 
         [SerializeField] protected int m_attack;
         [SerializeField] protected float m_speed;
         [SerializeField] protected float m_lifeTime;
@@ -18,6 +18,7 @@ namespace SkillCardSystem.Bullet
 
         protected void Awake()
         {
+            Debug.Log("BulletBase Awake");
             m_rbComp = GetComponent<Rigidbody2D>();
             m_lifeTimer = new Timer(m_lifeTime, OnDestroySelf,true);
         }
@@ -27,7 +28,12 @@ namespace SkillCardSystem.Bullet
            m_lifeTimer.Tick(Time.deltaTime);
         }
 
-        public abstract void Set(int attack,float speed,Vector2 direction);
+        public virtual void Set(int attack, float speed, Vector2 direction)
+        {
+            m_attack = attack;
+            m_speed = speed;
+            m_rbComp.velocity = direction * m_speed;
+        }
 
         protected virtual void OnDestroySelf()
         {

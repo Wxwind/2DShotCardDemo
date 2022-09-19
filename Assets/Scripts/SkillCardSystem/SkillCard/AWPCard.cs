@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SkillCardSystem.SkillCard
 {
-    public class RevolverCard : SkillCardBase
+    public class AWPCard:SkillCardBase
     {
         [Title("运行时信息")]
         [ShowInInspector, ReadOnly] private PlayerController m_player;

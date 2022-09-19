@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SkillCardSystem.CollectableCard
 {
-    public class RevolverCollectable : CollectableCardBase
+    public class CardCollectable : CollectableCardBase
     {
         public override void Interact()
         {
