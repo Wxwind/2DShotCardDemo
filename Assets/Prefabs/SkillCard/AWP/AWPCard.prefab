@@ -46,6 +46,6 @@ MonoBehaviour:
   Id: AWP
   Name: AWP
   Summary: One Shot,One Kill
-  BackGround: {fileID: -5113850848988359095, guid: 47eb634df44ff9043bd4be83dbcf8fa2, type: 3}
+  BackGround: {fileID: 21300000, guid: ee76757ecb5839248b59c6cdc7e47626, type: 3}
   BulletCapacity: 5
   WeaponPre: {fileID: 1421619640431054868, guid: 31c808c9ec351f640a722be69b2eabe6, type: 3}

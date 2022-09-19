@@ -46,7 +46,6 @@ MonoBehaviour:
   Id: Revolver
   Name: Revolver
   Summary: Just a noob card
-  CardUI: {fileID: 0}
+  BackGround: {fileID: 21300000, guid: b7939245aef0c1349916d7664569cf16, type: 3}
   BulletCapacity: 10
   WeaponPre: {fileID: 1421619640431054868, guid: 605cb2a7665eae941a29d53f70ac11b4, type: 3}
-  m_shotCD: 1
