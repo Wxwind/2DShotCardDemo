@@ -1,5 +1,4 @@
-﻿using System;
-using SkillCardSystem;
+﻿using SkillCardSystem;
 using SkillCardSystem.CollectableCard;
 using UnityEngine;
 
@@ -9,10 +8,11 @@ namespace Player
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var c = other.GetComponent<CollectableCaedBase>();
+            var c = other.GetComponent<CollectableCardBase>();
             if (c!=null)
             {
                 SkillCardManager.instance.AddCard(c.CardName);
+                Destroy(c.gameObject);
             }
         }
     }

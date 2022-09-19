@@ -1,34 +1,22 @@
 ﻿using Sirenix.OdinInspector;
+using SkillCardSystem.Weapon;
 using UnityEngine;
 
 namespace SkillCardSystem.SkillCard
 {
     public class RevolverCard : SkillCardBase
     {
-        [Title("设置")] [SerializeField] private float m_shotCD = 1.0f;
-
-        [Title("运行时信息")] [ShowInInspector, ReadOnly]
-        private bool m_isCanShot = true;
-
-        [ShowInInspector, ReadOnly] private GameObject m_player;
-        [ShowInInspector, ReadOnly] private GameObject m_weapon;
-        [ShowInInspector, ReadOnly] private int m_bulletCount;
-
-        private Timer m_shotTimer;
-
+        [Title("运行时信息")]
+        [ShowInInspector, ReadOnly] private PlayerController m_player;
+        [ShowInInspector, ReadOnly] private WeaponBase m_weapon;
 
         private void Awake()
         {
-            m_player = GameObject.Find("Player");
-            m_shotTimer = new Timer(m_shotCD, () => { m_isCanShot = true; },true);
-            m_weapon = Instantiate(WeaponPre.gameObject, m_player.transform);
-            m_bulletCount = 0;
+            m_player = GameObject.Find("Player").GetComponent<PlayerController>();
+            m_weapon = Instantiate(WeaponPre.gameObject, m_player.transform).GetComponent<WeaponBase>();
         }
 
-        private void Update()
-        {
-            m_shotTimer.Tick(Time.deltaTime);
-        }
+     
 
         public override void OnInit()
         {
@@ -37,30 +25,38 @@ namespace SkillCardSystem.SkillCard
 
         public override void OnDestroySelf()
         {
-            
+            Destroy(gameObject);
+            m_weapon.OnDestroySelf();
         }
 
         public override void OnActivate()
         {
-            if (m_isCanShot)
-            {
-                m_shotTimer.ReRun();
-            }
+            m_weapon.Shot();
         }
 
         public override void OnDiscord()
         {
-            throw new System.NotImplementedException();
+            OnDestroySelf();
         }
 
-        public override void OnSwitch()
+        public override void OnSwitchOut()
         {
-            throw new System.NotImplementedException();
+            m_weapon.gameObject.SetActive(false);
         }
 
-        public override void OnEquip()
+        public override void OnSwitchIn()
         {
-            throw new System.NotImplementedException();
+            m_weapon.gameObject.SetActive(true);
+        }
+
+        public override void OnEnterMainCardSlot()
+        {
+            m_weapon.gameObject.SetActive(true);
+        }
+
+        public override void OnEnterSpareCardSlot()
+        {
+            m_weapon.gameObject.SetActive(false);
         }
     }
 }

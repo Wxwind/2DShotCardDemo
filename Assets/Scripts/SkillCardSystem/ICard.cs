@@ -11,8 +11,8 @@
         ///卡牌的弃牌技能/通常为右键弃牌触发效果
         void OnDiscord();
         ///切换至其他卡牌时触发效果/最起码要隐藏当前的武器
-        void OnSwitch();
+        void OnSwitchOut();
         ///切换至该卡牌时触发效果/最起码要切换至当前武器
-        void OnEquip();
+        void OnSwitchIn();
     }
 }

@@ -13,8 +13,8 @@ namespace SkillCardSystem
         //[Title("设置")] 
 
         [Title("当前拥有的卡牌")]
-        [ReadOnly, ShowInInspector] SkillCardBase SpareSkillCard;
-        [ReadOnly, ShowInInspector] SkillCardBase MainSkillCard;
+        [ReadOnly, ShowInInspector] SkillCardBase m_spareSkillCard;
+        [ReadOnly, ShowInInspector] SkillCardBase m_mainSkillCard;
 
         private void Awake()
         {
@@ -39,50 +39,82 @@ namespace SkillCardSystem
                 Debug.LogError($"不存在id为{cardId}的卡片");
                 return false;
             }
-
-            if (SpareSkillCard != null)
-            {
-                Debug.Log("当前卡牌数量已满");
-                return false;
-            }
-
             var go = Instantiate(c.gameObject, transform);
             var skillCardComp = go.GetComponent<SkillCardBase>();
             skillCardComp.OnInit();
-            SpareSkillCard = skillCardComp;
-            return true;
+            
+            if (m_mainSkillCard==null)
+            {
+                skillCardComp.OnEnterMainCardSlot();
+                m_mainSkillCard = skillCardComp;
+                return true;
+            }
+            if (m_spareSkillCard == null)
+            {
+                skillCardComp.OnEnterSpareCardSlot();
+                m_spareSkillCard = skillCardComp;
+                return true;
+            }
+            Debug.Log("当前卡牌数量已满");
+            return false;
         }
 
+        //主动激活卡牌，触发激活效果
         public void ActivateCard()
         {
-            if (MainSkillCard != null)
+            if (m_mainSkillCard != null)
             {
-                MainSkillCard.OnActivate();
+                m_mainSkillCard.OnActivate();
             }
         }
 
-        //主动丢弃卡牌
+        //主动丢弃卡牌并触发弃牌效果
         public void DiscordCard()
         {
-            if (MainSkillCard != null)
+            if (m_mainSkillCard != null)
             {
-                MainSkillCard.OnDiscord();
+                m_mainSkillCard.OnDiscord();
             }
+            OnMainCardExhausted();
         }
 
         //主动切换卡牌
         public void SwitchSkillCard()
         {
-            if (MainSkillCard != null)
+            if (m_mainSkillCard != null&&m_spareSkillCard!=null)
             {
-                MainSkillCard.OnSwitch();
+                m_mainSkillCard.OnSwitchOut();
+                m_spareSkillCard.OnSwitchIn();
             }
         }
 
+        //捡起卡牌并替换当前的备用卡牌
+        public void ReplaceSpareCard(string cardId)
+        {
+            if (m_spareSkillCard!=null)
+            {
+                m_spareSkillCard.OnDestroySelf();
+            }
+            AddCard(cardId);
+        }
+
+        /// <summary>
+        /// 销毁MainCard，切换至SpareCard(如果有的话)
+        /// </summary>
         public void OnMainCardExhausted()
         {
-            MainSkillCard = SpareSkillCard;
-            SpareSkillCard = null;
+            m_mainSkillCard.OnDestroySelf();
+            if (m_spareSkillCard!=null)
+            {
+                m_spareSkillCard.OnSwitchIn();
+                m_mainSkillCard = m_spareSkillCard;
+                m_spareSkillCard = null;
+            }
+        }
+
+        public bool HasMaxCards()
+        {
+            return m_spareSkillCard != null;
         }
 
         public void UpdateUI()

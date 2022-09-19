@@ -1,10 +1,14 @@
 ﻿using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using UnityEngine;
 
+[Serializable]
 public class Timer
 {
-    private float time;
-    private Action OnComplete;
-    private float value;
+    [ShowInInspector]private float time;
+    [ShowInInspector]private float value;
+    private Action OnComplete;  
 
     public float Value
     {

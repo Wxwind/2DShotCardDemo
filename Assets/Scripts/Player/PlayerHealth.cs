@@ -16,7 +16,7 @@ namespace Player
         public virtual void OnHurt(int damege)
         {
             m_nowBlood -= damege;
-            if (m_nowBlood<0)
+            if (m_nowBlood<=0)
             {
                 OnDeath();
             }

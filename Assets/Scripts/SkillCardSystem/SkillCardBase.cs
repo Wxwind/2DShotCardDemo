@@ -22,7 +22,9 @@ namespace SkillCardSystem
         public abstract void OnDestroySelf();
         public abstract void OnActivate();
         public abstract void OnDiscord();
-        public abstract void OnSwitch();
-        public abstract void OnEquip();
+        public abstract void OnSwitchOut();
+        public abstract void OnSwitchIn();
+        public abstract void OnEnterMainCardSlot();
+        public abstract void OnEnterSpareCardSlot();
     }
 }

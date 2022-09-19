@@ -5,37 +5,42 @@ using UnityEngine;
 
 namespace SkillCardSystem.Bullet
 {
-    public class BulletBase:MonoBehaviour
+    public abstract class BulletBase:MonoBehaviour
     {
         [Title("设置")] 
-        [SerializeField] private int m_attack;
-        [ShowInInspector, ReadOnly] private Rigidbody2D m_rbComp;
-        [ShowInInspector, ReadOnly] private float m_lifeTime;
-        private Timer lifeTimer;
+        [SerializeField] protected int m_attack;
+        [SerializeField] protected float m_speed;
+        [SerializeField] protected float m_lifeTime;
+        [ShowInInspector, ReadOnly] protected Rigidbody2D m_rbComp;
+        
+        private Timer m_lifeTimer;
         
 
-        public void Awake()
+        protected void Awake()
         {
             m_rbComp = GetComponent<Rigidbody2D>();
-            lifeTimer = new Timer(m_lifeTime, OnDestroySelf,true);
+            m_lifeTimer = new Timer(m_lifeTime, OnDestroySelf,true);
         }
 
-        public void OnSpawn(int attack)
+        protected void Update()
         {
-            
+           m_lifeTimer.Tick(Time.deltaTime);
         }
 
-        private void OnDestroySelf()
+        public abstract void Set(int attack,float speed,Vector2 direction);
+
+        protected virtual void OnDestroySelf()
         {
             Destroy(gameObject);
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected void OnTriggerEnter2D(Collider2D other)
         {
             var e = other.GetComponent<EnemyBase>();
             if (e != null)
             {
                 e.OnHurt(m_attack);
+                OnDestroySelf();
             }
         }
     }
