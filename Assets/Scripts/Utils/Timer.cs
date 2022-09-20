@@ -1,7 +1,5 @@
 ﻿using System;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
-using UnityEngine;
 
 [Serializable]
 public class Timer

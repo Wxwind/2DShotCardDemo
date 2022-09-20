@@ -21,6 +21,7 @@ public class ShakeCameraManager : MonoBehaviour
 
     public void Shake(Vector2 speed,float factor=1)
     {
+        Debug.Log($"camera shake with speed:{speed}");
         m_impulseSource.GenerateImpulse(speed*factor);
     }
 }

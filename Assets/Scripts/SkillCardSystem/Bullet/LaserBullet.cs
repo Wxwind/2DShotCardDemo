@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace SkillCardSystem.Bullet
+﻿namespace SkillCardSystem.Bullet
 {
     public class LaserBullet:BulletBase
     {

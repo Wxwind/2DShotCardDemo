@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f83e3648d8eec4bacad0004e0df3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cardName: AWP
+  m_cardName: Laser
 --- !u!114 &812595117983767441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 812595118621095352}
   m_Layer: 0
-  m_Name: AWPCollectable
+  m_Name: LaserCollectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

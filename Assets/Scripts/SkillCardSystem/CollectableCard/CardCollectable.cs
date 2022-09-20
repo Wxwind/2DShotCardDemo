@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace SkillCardSystem.CollectableCard
 {
     public class CardCollectable : CollectableCardBase

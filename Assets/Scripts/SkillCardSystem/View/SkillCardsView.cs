@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-using SkillCardSystem.SkillCard;
-using SkillCardSystem.Weapon;
+﻿using SkillCardSystem.SkillCard;
 using UnityEngine;
 
 namespace SkillCardSystem.View

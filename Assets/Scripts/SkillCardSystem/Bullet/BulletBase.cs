@@ -1,5 +1,4 @@
-﻿using System;
-using Enemy;
+﻿using Enemy;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -18,7 +17,6 @@ namespace SkillCardSystem.Bullet
 
         protected void Awake()
         {
-            Debug.Log("BulletBase Awake");
             m_rbComp = GetComponent<Rigidbody2D>();
             m_lifeTimer = new Timer(m_lifeTime, OnDestroySelf,true);
         }

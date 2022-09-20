@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using SkillCardSystem.SkillCard;
 using SkillCardSystem.View;
+using SkillCardSystem.Weapon;
 using UnityEngine;
 
 namespace SkillCardSystem
@@ -17,6 +15,18 @@ namespace SkillCardSystem
         [Title("当前拥有的卡牌")]
         [ReadOnly, ShowInInspector]private SkillCardBase m_mainSkillCard;
         [ReadOnly, ShowInInspector]private SkillCardBase m_spareSkillCard;
+
+        public WeaponBase NowWeapon
+        {
+            get
+            {
+                if (m_mainSkillCard != null)
+                {
+                    return m_mainSkillCard.Weapon;
+                }
+                return null;
+            }
+        }
 
         private void Awake()
         {
@@ -39,7 +49,7 @@ namespace SkillCardSystem
         {
             if (!CardLibrary.instance.TryGetCard(cardId, out var c))
             {
-                Debug.LogError($"不存在id为{cardId}的卡片");
+                Debug.LogError($"SkillCardManager:不存在id为{cardId}的卡片 in CardLibrary");
                 return false;
             }
             var go = Instantiate(c.gameObject, transform);
@@ -50,7 +60,7 @@ namespace SkillCardSystem
             {
                 skillCardComp.OnEnterMainCardSlot();
                 m_mainSkillCard = skillCardComp;
-                Debug.Log($"捡到卡牌Id:{cardId}，存入主卡牌中");
+                Debug.Log($"SkillCardManager:捡到卡牌Id:{cardId}，存入主卡牌中");
                 UpdateUI();
                 return true;
             }
@@ -58,11 +68,11 @@ namespace SkillCardSystem
             {
                 skillCardComp.OnEnterSpareCardSlot();
                 m_spareSkillCard = skillCardComp;
-                Debug.Log($"捡到卡牌Id:{cardId}，存入副卡牌中");
+                Debug.Log($"SkillCardManager:捡到卡牌Id:{cardId}，存入副卡牌中");
                 UpdateUI();
                 return true;
             }
-            Debug.Log("当前卡牌数量已满");
+            Debug.Log("SkillCardManager:当前卡牌数量已满");
             return false;
         }
 
@@ -81,11 +91,12 @@ namespace SkillCardSystem
         /// <summary>
         /// 主动丢弃卡牌并触发弃牌效果，并在OnMainCardExhausted中刷新UI
         /// </summary>
-        public void DesertCard()
+        public void DiscardCard()
         {
             if (m_mainSkillCard != null)
             {
                 m_mainSkillCard.OnDiscord();
+                Debug.Log($"SkillCardManager:触发{m_mainSkillCard.Name}弃牌效果");
             }
             OnMainCardExhausted();
         }
@@ -100,7 +111,7 @@ namespace SkillCardSystem
                 m_mainSkillCard.OnSwitchOut();
                 m_spareSkillCard.OnSwitchIn();
                 (m_mainSkillCard, m_spareSkillCard) = (m_spareSkillCard, m_mainSkillCard);
-                Debug.Log($"切换后主副卡牌：主={m_mainSkillCard.Name}||副={m_spareSkillCard.Name}");
+                Debug.Log($"SkillCardManager:切换后主副卡牌：主={m_mainSkillCard.Name}||副={m_spareSkillCard.Name}");
             }
             UpdateUI();
         }

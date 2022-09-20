@@ -6,15 +6,9 @@ namespace SkillCardSystem.SkillCard
 {
     public class RevolverCard : SkillCardBase
     {
-        
-        [Title("运行时信息")]
-        [ShowInInspector, ReadOnly] private PlayerController m_player;
-        
         public override void OnInit()
         {
-            m_player = GameObject.Find("Player").GetComponent<PlayerController>();
-            m_weapon = Instantiate(WeaponPre.gameObject, m_player.transform).GetComponent<WeaponBase>();
-            m_weapon.OnInit();
+            base.OnInit();
         }
 
         public override void OnDestroySelf()
@@ -40,6 +34,7 @@ namespace SkillCardSystem.SkillCard
 
         public override void OnSwitchIn()
         {
+            m_weapon.OnSwitchIn();
             m_weapon.gameObject.SetActive(true);
         }
 

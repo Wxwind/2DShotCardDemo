@@ -1,8 +1,7 @@
-using System;
+using Cinemachine;
 using Sirenix.OdinInspector;
 using SkillCardSystem;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,14 +10,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_lrAirMoveSpeed;
     [SerializeField] private float m_jumpSpeed;
     [SerializeField] private float m_wallSlideSpeed;
+    
+    [Title("相机设置")]
+    [SerializeField] private Transform m_leftFocusTrans;
+    [SerializeField] private Transform m_rightFocusTrans;
+    [SerializeField] private CinemachineVirtualCamera m_vCamera;
+    
+    [Title("运行时信息")]
     [ShowInInspector, ReadOnly] private int xInput = 0;
-    [ShowInInspector, ReadOnly] private Vector2 faceDir = new Vector2(1, 0);
-    public Vector2 FaceDir => faceDir;
+    [ShowInInspector, ReadOnly] private Vector2Int faceDir = new Vector2Int(1, 0);
+    
+    public Vector2Int FaceDir => faceDir;
 
-    [Title("角色状态")] 
-    [ShowInInspector, ReadOnly]
-    private bool m_isCanMove = true;
-
+    [Title("角色状态")]
+    [ShowInInspector, ReadOnly] private bool m_isCanMove = true;
     [ShowInInspector, ReadOnly] private bool m_isCanJump = true;
     [ShowInInspector, ReadOnly] private bool m_isCanActivateCard = true;
     [ShowInInspector, ReadOnly] private bool m_isCanDiscordCard = true;
@@ -61,14 +66,33 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        var rotateY = faceDir.x == 1 ? 0 : 180;
+        transform.rotation=Quaternion.Euler(0,rotateY,0);
+        FoucusCamera();
         LRMove();
         Jump();
         ActivateCard();
-        DesertCard();
+        DiscardCard();
         SwitchSkillCard();
         WallSlide();
     }
 
+    private void FoucusCamera()
+    {
+        switch (xInput)
+        {
+            case 0:
+                m_vCamera.Follow = transform;
+                break;
+            case -1:
+                m_vCamera.Follow = m_leftFocusTrans;
+                break;
+            case 1:
+                m_vCamera.Follow = m_rightFocusTrans;
+                break;
+        }
+    }
+    
     private void LRMove()
     {
         if (!m_isCanMove) return;
@@ -93,9 +117,14 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         if (!m_isCanJump) return;
-        if (Input.GetKey(InputKeyManager.instance.jumpKey) && m_collDectComp.OnGround)
+        if (Input.GetKeyDown(InputKeyManager.instance.jumpKey) && m_collDectComp.OnGround)
         {
             m_rbComp.velocity = new Vector2(m_rbComp.velocity.x, m_jumpSpeed);
+            if (SkillCardManager.instance.NowWeapon!=null)
+            {
+                SkillCardManager.instance.NowWeapon.OnPlayerJump();
+            }
+            
             AudioManager.instance.PlaySFXAudio("Player_Jump");
         }
     }
@@ -109,12 +138,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void DesertCard()
+    private void DiscardCard()
     {
         if (!m_isCanDiscordCard) return;
-        if (Input.GetKeyDown(InputKeyManager.instance.desertKey))
+        if (Input.GetKeyDown(InputKeyManager.instance.discardKey))
         {
-            SkillCardManager.instance.DesertCard();
+            SkillCardManager.instance.DiscardCard();
         }
     }
 
@@ -138,7 +167,12 @@ public class PlayerController : MonoBehaviour
             m_collDectComp.OnRightWall&&Input.GetKey(InputKeyManager.instance.rightKey))
         {
             ResetAllAbility(false);
-            m_rbComp.velocity = new Vector2(m_rbComp.velocity.x,m_wallSlideSpeed);
+            //防止靠墙跳跃的时候瞬间落下
+            float vY = m_rbComp.velocity.y;
+            if (vY<=0)
+            {
+                m_rbComp.velocity = new Vector2(m_rbComp.velocity.x,m_wallSlideSpeed);
+            }
         }
     }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Sirenix.OdinInspector;
 
 
@@ -13,7 +12,7 @@ public class InputKeyManager : MonoBehaviour
     [ReadOnly] public KeyCode attackKey;
     [ReadOnly] public KeyCode abilityKey;
     [ReadOnly] public KeyCode jumpKey;
-    [ReadOnly] public KeyCode desertKey;
+    [ReadOnly] public KeyCode discardKey;
     [ReadOnly] public KeyCode interactKey;
 
     private void Awake()
@@ -34,7 +33,7 @@ public class InputKeyManager : MonoBehaviour
         leftKey = KeyCode.A;
         rightKey = KeyCode.D;
         attackKey = KeyCode.K;
-        desertKey = KeyCode.L;
+        discardKey = KeyCode.L;
         jumpKey = KeyCode.J;
         interactKey = KeyCode.E;
     }

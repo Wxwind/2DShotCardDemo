@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1421619640431054870}
   - component: {fileID: -4374713348433270986}
   - component: {fileID: -2913289592378874918}
+  - component: {fileID: 468504309882209512}
   m_Layer: 0
   m_Name: LaserWeapon
   m_TagString: Untagged
@@ -121,3 +122,44 @@ MonoBehaviour:
   m_bulletAttack: 30
   m_bulletCapacity: 5
   s_shootAudioName: Weapon_Laser_Shoot
+  m_weaponAnim_Jump:
+    _FadeDuration: 0
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 03f89bea9e3d0904fb2a82d74163f78a, type: 2}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  m_weaponAnim_Shot:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 2cf868a524808a942acb25763a267db5, type: 2}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  m_weaponAnim_Idle:
+    _FadeDuration: 0
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 0bb55e753dcccc84e977200c7045525f, type: 2}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+--- !u!114 &468504309882209512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421619640431054871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Animator: {fileID: -4374713348433270986}
+  _ActionOnDisable: 0

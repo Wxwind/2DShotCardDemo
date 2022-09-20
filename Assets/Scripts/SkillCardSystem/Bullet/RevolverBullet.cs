@@ -7,7 +7,7 @@ namespace SkillCardSystem.Bullet
     {
         protected override void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.layer==LayerMask.GetMask("Ground"))
+            if (other.gameObject.layer==LayerMask.NameToLayer("Ground"))
             {
                 OnDestroySelf();
                 return;

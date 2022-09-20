@@ -18,10 +18,20 @@ namespace SkillCardSystem.SkillCard
         public WeaponBase WeaponPre;
         [Title("运行时信息")]
         [ShowInInspector, ReadOnly] protected WeaponBase m_weapon;
+        [SerializeField] protected Transform m_weaponSlot;
 
         public WeaponBase Weapon => m_weapon;
 
-        public abstract void OnInit();
+        public virtual void OnInit()
+        {
+            m_weaponSlot = GameObject.Find("WeaponSlot").transform;
+            if (m_weaponSlot==null)
+            {
+                Debug.LogError("WeaponSlot is nul");
+            }
+            m_weapon = Instantiate(WeaponPre.gameObject, m_weaponSlot).GetComponent<WeaponBase>();
+            m_weapon.OnInit();
+        }
         public abstract void OnDestroySelf();
         public abstract void OnActivate();
         public abstract void OnDiscord();
