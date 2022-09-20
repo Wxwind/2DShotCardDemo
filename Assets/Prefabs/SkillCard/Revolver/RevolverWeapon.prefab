@@ -120,3 +120,4 @@ MonoBehaviour:
   m_bulletSpeed: 6
   m_bulletAttack: 10
   m_bulletCapacity: 10
+  s_shootAudioName: Weapon_Revolver_Shoot

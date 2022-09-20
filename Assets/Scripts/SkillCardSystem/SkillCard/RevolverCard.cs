@@ -6,6 +6,7 @@ namespace SkillCardSystem.SkillCard
 {
     public class RevolverCard : SkillCardBase
     {
+        
         [Title("运行时信息")]
         [ShowInInspector, ReadOnly] private PlayerController m_player;
         
@@ -39,7 +40,6 @@ namespace SkillCardSystem.SkillCard
 
         public override void OnSwitchIn()
         {
-            m_weapon.ReEnterCD();
             m_weapon.gameObject.SetActive(true);
         }
 

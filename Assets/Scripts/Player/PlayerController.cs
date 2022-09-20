@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         LRMove();
         Jump();
         ActivateCard();
-        DiscordCard();
+        DesertCard();
         SwitchSkillCard();
         WallSlide();
     }
@@ -93,34 +93,35 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         if (!m_isCanJump) return;
-        if (Input.GetKey(KeyCode.J) && m_collDectComp.OnGround)
+        if (Input.GetKey(InputKeyManager.instance.jumpKey) && m_collDectComp.OnGround)
         {
             m_rbComp.velocity = new Vector2(m_rbComp.velocity.x, m_jumpSpeed);
+            AudioManager.instance.PlaySFXAudio("Player_Jump");
         }
     }
 
     private void ActivateCard()
     {
         if (!m_isCanActivateCard) return;
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(InputKeyManager.instance.attackKey))
         {
             SkillCardManager.instance.ActivateCard();
         }
     }
 
-    private void DiscordCard()
+    private void DesertCard()
     {
         if (!m_isCanDiscordCard) return;
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(InputKeyManager.instance.desertKey))
         {
-            SkillCardManager.instance.DiscordCard();
+            SkillCardManager.instance.DesertCard();
         }
     }
 
     private void SwitchSkillCard()
     {
         if (!m_isCanSwitchCard) return;
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(InputKeyManager.instance.interactKey))
         {
             SkillCardManager.instance.SwitchSkillCard();
         }

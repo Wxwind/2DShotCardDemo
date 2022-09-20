@@ -13,7 +13,7 @@ public class InputKeyManager : MonoBehaviour
     [ReadOnly] public KeyCode attackKey;
     [ReadOnly] public KeyCode abilityKey;
     [ReadOnly] public KeyCode jumpKey;
-    [ReadOnly] public KeyCode dashKey;
+    [ReadOnly] public KeyCode desertKey;
     [ReadOnly] public KeyCode interactKey;
 
     private void Awake()
@@ -34,7 +34,7 @@ public class InputKeyManager : MonoBehaviour
         leftKey = KeyCode.A;
         rightKey = KeyCode.D;
         attackKey = KeyCode.K;
-        abilityKey = KeyCode.L;
+        desertKey = KeyCode.L;
         jumpKey = KeyCode.J;
         interactKey = KeyCode.E;
     }

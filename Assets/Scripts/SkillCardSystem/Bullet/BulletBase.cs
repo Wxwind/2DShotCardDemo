@@ -40,12 +40,13 @@ namespace SkillCardSystem.Bullet
             Destroy(gameObject);
         }
 
-        protected void OnTriggerEnter2D(Collider2D other)
+        protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             var e = other.GetComponent<EnemyBase>();
             if (e != null)
             {
                 e.OnHurt(m_attack);
+                ShakeCameraManager.instance.Shake(m_rbComp.velocity);
                 OnDestroySelf();
             }
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using SkillCardSystem.Bullet;
 using UnityEngine;
 
@@ -20,6 +19,9 @@ namespace SkillCardSystem.Weapon
         [ShowInInspector,ReadOnly] protected Timer m_shotTimer;
         [ShowInInspector,ReadOnly] protected GameObject m_bulletParent;
         [ShowInInspector, ReadOnly] protected PlayerController m_player;
+        
+        [Title("音频设置")] 
+        [SerializeField]protected string s_shootAudioName = "Weapon_Shoot_Default";
 
         public int BulletCapacity => m_bulletCapacity;
         public int NowBulletCount => m_nowBulletCount;
@@ -36,8 +38,11 @@ namespace SkillCardSystem.Weapon
         {
             m_shotTimer.Tick(Time.deltaTime);
         }
-        
-        public abstract void Shot();
+
+        public virtual void Shot()
+        {
+            
+        }
 
         public virtual void OnDestroySelf()
         {

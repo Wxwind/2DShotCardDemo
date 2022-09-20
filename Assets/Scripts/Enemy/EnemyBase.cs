@@ -15,6 +15,7 @@ namespace Enemy
             m_nowBlood = m_maxBlood;
         }
 
+        //受到攻击时
         public virtual void OnHurt(int damege)
         {
             m_nowBlood -= damege;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SkillCardSystem.Weapon
 {
-    public class RevolverWeapon:WeaponBase
+    public class LaserWeapon:WeaponBase
     {
         public override void Shot()
         {

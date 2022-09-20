@@ -365,6 +365,8 @@ Transform:
   m_Children:
   - {fileID: 419608971}
   - {fileID: 1000750555}
+  - {fileID: 574288655}
+  - {fileID: 1114044974}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -674,7 +676,7 @@ MonoBehaviour:
   attackKey: 0
   abilityKey: 0
   jumpKey: 0
-  dashKey: 0
+  desertKey: 0
   interactKey: 0
 --- !u!1 &519420028
 GameObject:
@@ -807,7 +809,7 @@ GameObject:
   - component: {fileID: 533297042}
   - component: {fileID: 533297044}
   m_Layer: 0
-  m_Name: PlayerCamera
+  m_Name: PlayerVCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,6 +897,53 @@ MonoBehaviour:
   m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 0
+--- !u!1 &574288654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 574288655}
+  - component: {fileID: 574288656}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &574288655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574288654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 226721333}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &574288656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574288654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c180c1b3aaa4b334a9fec9722c87e957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: bdd2b6ba8e416424b85b2b2c76c9675c, type: 2}
+  BGMVolumn: 0
+  SFXVolumn: 0
+  MasterVolumn: 0
 --- !u!1 &711710845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,7 +2215,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 1
-      Data: AWP
+      Data: Laser
     - Name: $v
       Entry: 10
       Data: 1
@@ -2192,6 +2241,93 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_skillCardsView: {fileID: 106841989}
+--- !u!1 &1114044973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1114044974}
+  - component: {fileID: 1114044975}
+  - component: {fileID: 1114044976}
+  m_Layer: 0
+  m_Name: ShakeCameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1114044974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114044973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 226721333}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1114044975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114044973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab06a1cb5ccfe24c83f86050dee0108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_impulseSource: {fileID: 0}
+--- !u!114 &1114044976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114044973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: f2b9ec43a5883ef409604322c8b0d37a, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
+    m_PropagationSpeed: 343
 --- !u!1 &1209556932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,9 +2501,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 149856881}
     m_Modifications:
+    - target: {fileID: 812595117983767446, guid: 1854dced2d830a54f9d15a390c2d9f44, type: 3}
+      propertyPath: m_cardName
+      value: Laser
+      objectReference: {fileID: 0}
     - target: {fileID: 812595118621095333, guid: 1854dced2d830a54f9d15a390c2d9f44, type: 3}
       propertyPath: m_Name
-      value: AWPCollectable
+      value: LaserCollectable
       objectReference: {fileID: 0}
     - target: {fileID: 812595118621095352, guid: 1854dced2d830a54f9d15a390c2d9f44, type: 3}
       propertyPath: m_RootOrder

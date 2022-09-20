@@ -81,7 +81,7 @@ namespace SkillCardSystem
         /// <summary>
         /// 主动丢弃卡牌并触发弃牌效果，并在OnMainCardExhausted中刷新UI
         /// </summary>
-        public void DiscordCard()
+        public void DesertCard()
         {
             if (m_mainSkillCard != null)
             {
