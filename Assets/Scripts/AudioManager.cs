@@ -64,6 +64,22 @@ public class AudioManager : MonoBehaviour
         else Debug.LogError("can't find the BGMaudio name:  " + audioname);
     }
 
+    public void PauseBGMAudio()
+    {
+        if (BGMSudioSource.clip!=null)
+        {
+            BGMSudioSource.Pause();
+        }
+    }
+    
+    public void ResumeBGMAudio()
+    {
+        if (BGMSudioSource.clip!=null)
+        {
+            BGMSudioSource.Play();
+        }
+    }
+
     #region only uesd for ui
 
     public void SetMasterVolume(float volume)
