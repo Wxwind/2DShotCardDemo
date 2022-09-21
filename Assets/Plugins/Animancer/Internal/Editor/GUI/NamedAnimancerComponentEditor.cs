@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEditorInternal;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -20,7 +21,7 @@ namespace Animancer.Editor
 
         /// <summary>[Editor-Only]
         /// Draws any custom GUI for the `property`. The return value indicates whether the GUI should replace the
-        /// regular call to <see cref="EditorGUILayout.PropertyField"/> or not.
+        /// regular call to <see cref="PropertyField"/> or not.
         /// </summary>
         protected override bool DoOverridePropertyGUI(string path, SerializedProperty property, GUIContent label)
         {

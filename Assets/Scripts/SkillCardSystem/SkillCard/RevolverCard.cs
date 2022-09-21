@@ -1,8 +1,4 @@
-﻿using Sirenix.OdinInspector;
-using SkillCardSystem.Weapon;
-using UnityEngine;
-
-namespace SkillCardSystem.SkillCard
+﻿namespace SkillCardSystem.SkillCard
 {
     public class RevolverCard : SkillCardBase
     {
@@ -40,7 +36,7 @@ namespace SkillCardSystem.SkillCard
 
         public override void OnEnterMainCardSlot()
         {
-            m_weapon.gameObject.SetActive(true);
+            base.OnEnterMainCardSlot();
         }
 
         public override void OnEnterSpareCardSlot()

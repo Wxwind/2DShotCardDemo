@@ -14,7 +14,7 @@ public class CollectableAnim : MonoBehaviour
             transform.Translate(Vector3.up * m_moveSpeed * Time.fixedDeltaTime);
             if (transform.localPosition.y >= m_upLocalPos)
             {
-                m_isMovingUp = false;
+                m_isMovingUp = false; 
             }
         }
         else

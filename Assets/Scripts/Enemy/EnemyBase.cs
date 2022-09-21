@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using System;
+using Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,21 +10,30 @@ namespace Enemy
         [Title("基础设置")]
         [SerializeField] protected int m_maxBlood;
         [SerializeField] protected int m_attack;
+        [SerializeField] protected float m_freezeTime=0.2f;
         [Title("运行时信息")]
+        [ShowInInspector, ReadOnly] protected Rigidbody2D m_rbComp;
         [ShowInInspector, ReadOnly] protected SpriteRenderer m_srComp;
         [ShowInInspector, ReadOnly] protected Color m_originColor;
         [ShowInInspector, ReadOnly] protected Color m_hurtColor = Color.white;
-        [ShowInInspector,ReadOnly]  protected int m_nowBlood;
-        private bool m_isInHurted=false;
-        private Timer m_setUnHurtStateTimer;
-        
+        [ShowInInspector, ReadOnly] protected int m_nowBlood;
+        [ShowInInspector, ReadOnly] protected PlayerController m_playerController;
+        protected bool m_isInHurted=false;
+        protected Timer m_setUnHurtStateTimer;
 
-        private void Awake()
+        public void OnInit(PlayerController player)
+        {
+            m_playerController = player;
+        }
+
+
+        protected virtual void Awake()
         {
             m_nowBlood = m_maxBlood;
             m_srComp = GetComponent<SpriteRenderer>();
+            m_rbComp = GetComponent<Rigidbody2D>();
             m_originColor = m_srComp.color;
-            m_setUnHurtStateTimer = new Timer(0.2f, () =>
+            m_setUnHurtStateTimer = new Timer(m_freezeTime, () =>
             {
                 m_isInHurted = false;
                 m_srComp.color = m_originColor;
@@ -41,7 +51,7 @@ namespace Enemy
             }
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             m_setUnHurtStateTimer.Tick(Time.deltaTime);
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using Animancer;
+﻿using Animancer;
 using Sirenix.OdinInspector;
 using SkillCardSystem.Bullet;
 using UnityEngine;
@@ -42,18 +41,16 @@ namespace SkillCardSystem.Weapon
         
         public virtual void OnInit()
         {
-            Debug.Log("WeaponBase Awake");
             m_nowBulletCount = m_bulletCapacity;
             m_shotTimer = new Timer(m_shotCD, () => { m_isCanShot = true; },true);
             m_bulletParent = GameObject.Find("BulletParentTrans");
             m_player = GameObject.Find("Player").GetComponent<PlayerController>();
             m_animComp = GetComponent<AnimancerComponent>();
-            SwitchToIdle();
             m_weaponAnim_Jump.Events.OnEnd = SwitchToIdle;
             m_weaponAnim_Shot.Events.OnEnd = SwitchToIdle;
         }
 
-        private void SwitchToIdle()
+        public void SwitchToIdle()
         {
             m_animComp.Play(m_weaponAnim_Idle);
         }

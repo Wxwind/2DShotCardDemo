@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using SkillCardSystem.Weapon;
 using UnityEngine;
+using Utils;
 
 namespace SkillCardSystem.SkillCard
 {
@@ -27,7 +28,7 @@ namespace SkillCardSystem.SkillCard
             m_weaponSlot = GameObject.Find("WeaponSlot").transform;
             if (m_weaponSlot==null)
             {
-                Debug.LogError("WeaponSlot is nul");
+                LogHelper.LogError("WeaponSlot is null");
             }
             m_weapon = Instantiate(WeaponPre.gameObject, m_weaponSlot).GetComponent<WeaponBase>();
             m_weapon.OnInit();
@@ -37,7 +38,12 @@ namespace SkillCardSystem.SkillCard
         public abstract void OnDiscord();
         public abstract void OnSwitchOut();
         public abstract void OnSwitchIn();
-        public abstract void OnEnterMainCardSlot();
+
+        public virtual void OnEnterMainCardSlot()
+        {
+            m_weapon.gameObject.SetActive(true);
+            m_weapon.SwitchToIdle();
+        }
         public abstract void OnEnterSpareCardSlot();
     }
 }

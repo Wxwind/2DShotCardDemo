@@ -4,6 +4,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -80,7 +81,7 @@ namespace Animancer
     /************************************************************************************************************************/
 
 #if UNITY_EDITOR
-    /// <summary>[Editor-Only] Draws the Inspector GUI for a <see cref="Transition{TMixer, TParameter}"/>.</summary>
+    /// <summary>[Editor-Only] Draws the Inspector GUI for a <see cref="Selectable.Transition"/>.</summary>
     /// <remarks>
     /// Documentation: <see href="https://kybernetik.com.au/animancer/docs/manual/transitions">Transitions</see>
     /// and <see href="https://kybernetik.com.au/animancer/docs/manual/blending/mixers">Mixers</see>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Utils;
 
 public class AudioManager : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class AudioManager : MonoBehaviour
         {
             SFXAudioPool.Play(_audioDic[audioname]);
         }
-        else Debug.LogError("can't find the SFXaudio name:  " + audioname);
+        else LogHelper.LogError("can't find the SFXaudio name:  " + audioname);
     }
 
     public void PlayBGMAudio(string audioname)
@@ -61,7 +62,7 @@ public class AudioManager : MonoBehaviour
             BGMSudioSource.clip = _audioDic[audioname];
             BGMSudioSource.Play();
         }
-        else Debug.LogError("can't find the BGMaudio name:  " + audioname);
+        else LogHelper.LogInfo("can't find the BGMaudio name:  " + audioname);
     }
 
     public void PauseBGMAudio()

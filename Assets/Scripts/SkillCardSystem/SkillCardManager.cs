@@ -3,6 +3,7 @@ using SkillCardSystem.SkillCard;
 using SkillCardSystem.View;
 using SkillCardSystem.Weapon;
 using UnityEngine;
+using Utils;
 
 namespace SkillCardSystem
 {
@@ -49,7 +50,7 @@ namespace SkillCardSystem
         {
             if (!CardLibrary.instance.TryGetCard(cardId, out var c))
             {
-                Debug.LogError($"SkillCardManager:不存在id为{cardId}的卡片 in CardLibrary");
+                LogHelper.LogError($"SkillCardManager:不存在id为{cardId}的卡片 in CardLibrary");
                 return false;
             }
             var go = Instantiate(c.gameObject, transform);
@@ -60,7 +61,7 @@ namespace SkillCardSystem
             {
                 skillCardComp.OnEnterMainCardSlot();
                 m_mainSkillCard = skillCardComp;
-                Debug.Log($"SkillCardManager:捡到卡牌Id:{cardId}，存入主卡牌中");
+                LogHelper.LogInfo($"SkillCardManager:捡到卡牌Id:{cardId}，存入主卡牌中");
                 UpdateUI();
                 return true;
             }
@@ -68,11 +69,11 @@ namespace SkillCardSystem
             {
                 skillCardComp.OnEnterSpareCardSlot();
                 m_spareSkillCard = skillCardComp;
-                Debug.Log($"SkillCardManager:捡到卡牌Id:{cardId}，存入副卡牌中");
+                LogHelper.LogInfo($"SkillCardManager:捡到卡牌Id:{cardId}，存入副卡牌中");
                 UpdateUI();
                 return true;
             }
-            Debug.Log("SkillCardManager:当前卡牌数量已满");
+            LogHelper.LogInfo("SkillCardManager:当前卡牌数量已满");
             return false;
         }
 
@@ -96,7 +97,7 @@ namespace SkillCardSystem
             if (m_mainSkillCard != null)
             {
                 m_mainSkillCard.OnDiscord();
-                Debug.Log($"SkillCardManager:触发{m_mainSkillCard.Name}弃牌效果");
+                LogHelper.LogInfo($"SkillCardManager:触发{m_mainSkillCard.Name}弃牌效果");
             }
             OnMainCardExhausted();
         }
@@ -111,7 +112,7 @@ namespace SkillCardSystem
                 m_mainSkillCard.OnSwitchOut();
                 m_spareSkillCard.OnSwitchIn();
                 (m_mainSkillCard, m_spareSkillCard) = (m_spareSkillCard, m_mainSkillCard);
-                Debug.Log($"SkillCardManager:切换后主副卡牌：主={m_mainSkillCard.Name}||副={m_spareSkillCard.Name}");
+                LogHelper.LogInfo($"SkillCardManager:切换后主副卡牌：主={m_mainSkillCard.Name}||副={m_spareSkillCard.Name}");
             }
             UpdateUI();
         }

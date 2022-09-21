@@ -50,7 +50,7 @@ namespace Animancer.FSM
 
             /************************************************************************************************************************/
 
-            /// <summary>Creates a new <see cref="WithDefault"/>.</summary>
+            /// <summary>Creates a new <see cref="StateMachine{TState}.WithDefault"/>.</summary>
             public WithDefault()
             {
                 // Silly C# doesn't allow instance delegates to be assigned using field initializers.
@@ -59,7 +59,7 @@ namespace Animancer.FSM
 
             /************************************************************************************************************************/
 
-            /// <summary>Creates a new <see cref="WithDefault"/> and sets the <see cref="DefaultState"/>.</summary>
+            /// <summary>Creates a new <see cref="StateMachine{TState}.WithDefault"/> and sets the <see cref="DefaultState"/>.</summary>
             public WithDefault(TState defaultState)
                 : this()
             {

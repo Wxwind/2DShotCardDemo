@@ -1,7 +1,7 @@
-
 using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Utils;
 
 public class ShakeCameraManager : MonoBehaviour
 {
@@ -21,7 +21,6 @@ public class ShakeCameraManager : MonoBehaviour
 
     public void Shake(Vector2 speed,float factor=1)
     {
-        Debug.Log($"camera shake with speed:{speed}");
-        m_impulseSource.GenerateImpulse(speed*factor);
+        m_impulseSource.GenerateImpulse(new Vector3(speed.x,speed.y, 0)*factor);
     }
 }

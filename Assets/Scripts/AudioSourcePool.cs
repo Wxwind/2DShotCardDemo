@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Utils;
 
 public class AudioSourcePool 
 {   
@@ -28,7 +29,7 @@ public class AudioSourcePool
                 return;
             }
         }
-        Debug.LogWarning("Can't play the clip:the audioSourcePool is full");
+        LogHelper.LogWarning("Can't play the clip:the audioSourcePool is full");
     }
     public static void Play(AudioClip clip, Vector3 position)
     {

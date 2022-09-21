@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+
+using UnityEngine;
+using Utils;
 
 namespace Enemy
 {
-    public class EnemyLow : EnemyBase
+    public class EnemyHigh : EnemyBase
     {
-        [SerializeField] private float fixedSpeed = 2;
+        [SerializeField] private Vector2 jumpSpeed;
+        [SerializeField] private float jumpInternal=2f;
         private Vector2 m_cacheSpeed;
         private bool m_isInFreeze = false;
+        private bool m_isCanJump = false;
+        private Timer m_jumpTimer;
 
         protected override void Awake()
         {
@@ -18,19 +23,30 @@ namespace Enemy
                 m_rbComp.velocity = m_cacheSpeed;
                 m_isInFreeze = false;
             });
+            m_jumpTimer = new Timer(jumpInternal, () =>
+            {
+                m_isCanJump = true;
+            },true);
         }
 
         protected override void Update()
         {
             base.Update();
-            if (m_playerController != null&&!m_isInFreeze)
+            m_jumpTimer.Tick(Time.deltaTime);
+            if (m_playerController != null && !m_isInFreeze&&m_isCanJump)
             {
                 int isPlayerInRight = m_playerController.transform.position.x >= transform.position.x ? 1 : -1;
-                m_rbComp.velocity = new Vector2(fixedSpeed * isPlayerInRight, m_rbComp.velocity.y);
+                m_rbComp.velocity = new Vector2(jumpSpeed.x* isPlayerInRight,jumpSpeed.y);
+                LogHelper.LogInfo("enemy jump");
+                m_isCanJump = false;
+                m_jumpTimer.ReRun();
             }
-            else if (!m_isInFreeze)
+            else if (!m_isInFreeze&&m_isCanJump)
             {
-                m_rbComp.velocity = new Vector2(fixedSpeed, m_rbComp.velocity.y);
+                m_rbComp.velocity = jumpSpeed;
+                LogHelper.LogInfo("enemy jump");
+                m_isCanJump = false;
+                m_jumpTimer.ReRun();
             }
         }
 

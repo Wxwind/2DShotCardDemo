@@ -137,7 +137,7 @@ MonoBehaviour:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: 7400000, guid: 2cf868a524808a942acb25763a267db5, type: 2}
+    _Clip: {fileID: 7400000, guid: 3c45f86a8c549424885b1dc92a2400ba, type: 2}
     _Speed: 1
     _NormalizedStartTime: NaN
   m_weaponAnim_Idle:

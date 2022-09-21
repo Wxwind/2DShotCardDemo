@@ -7,6 +7,7 @@
 using Animancer.Units;
 using System.Collections.Generic;
 using System.IO;
+using Animancer.Editor.Tools;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Animancer.Editor
     /// The default location is <em>Assets/Plugins/Animancer/Editor</em>, but you can freely move it (and the whole
     /// Animancer folder) anywhere in your project.
     /// <para></para>
-    /// These settings can also be accessed via the Settings in the <see cref="Tools.AnimancerToolsWindow"/>
+    /// These settings can also be accessed via the Settings in the <see cref="AnimancerToolsWindow"/>
     /// (<c>Window/Animation/Animancer Tools</c>).
     /// </remarks>
     /// https://kybernetik.com.au/animancer/api/Animancer.Editor/AnimancerSettings

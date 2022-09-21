@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [ShowInInspector, ReadOnly] private bool m_isCanActivateCard = true;
     [ShowInInspector, ReadOnly] private bool m_isCanDiscordCard = true;
     [ShowInInspector, ReadOnly] private bool m_isCanSwitchCard = true;
+    public CinemachineVirtualCamera vCamera;
 
     //[Title("卡牌能力")]
 

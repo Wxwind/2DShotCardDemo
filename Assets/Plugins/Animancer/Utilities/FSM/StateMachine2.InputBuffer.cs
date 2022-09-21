@@ -1,5 +1,7 @@
 // Animancer // https://kybernetik.com.au/animancer // Copyright 2022 Kybernetik //
 
+using UnityEngine.PlayerLoop;
+
 namespace Animancer.FSM
 {
     public partial class StateMachine<TKey, TState>
@@ -39,7 +41,7 @@ namespace Animancer.FSM
             /// If a state is registered with the `key`, this method calls <see cref="Buffer(TKey, TState, float)"/>
             /// and returns true. Otherwise it returns false.
             /// </summary>
-            /// <remarks>Doesn't actually attempt to enter the state until <see cref="Update(float)"/> is called.</remarks>
+            /// <remarks>Doesn't actually attempt to enter the state until <see cref="Update"/> is called.</remarks>
             public bool Buffer(TKey key, float timeOut)
             {
                 if (StateMachine.TryGetValue(key, out var state))

@@ -1,7 +1,4 @@
-﻿using SkillCardSystem.Bullet;
-using UnityEngine;
-
-namespace SkillCardSystem.Weapon
+﻿namespace SkillCardSystem.Weapon
 {
     public class LaserWeapon:WeaponBase
     {

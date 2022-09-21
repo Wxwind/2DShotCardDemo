@@ -1,11 +1,9 @@
 ﻿using System;
-using Sirenix.OdinInspector;
 
-[Serializable]
 public class Timer
 {
-    [ShowInInspector]private float time;
-    [ShowInInspector]private float value;
+    private float time;
+    private float value;
     private Action OnComplete;  
 
     public float Value
