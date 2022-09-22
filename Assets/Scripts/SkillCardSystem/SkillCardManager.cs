@@ -136,6 +136,7 @@ namespace SkillCardSystem
             if (m_spareSkillCard!=null)
             {
                 m_spareSkillCard.OnDestroySelf();
+                m_spareSkillCard = null;
             }
             AddCard(cardId);
         }

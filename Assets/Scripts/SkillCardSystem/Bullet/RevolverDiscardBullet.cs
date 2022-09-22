@@ -15,20 +15,13 @@ public class RevolverDiscardBullet : BulletBase
     {
         base.Awake();
         m_animComp = GetComponent<AnimancerComponent>();
-        Debug.Log($"{m_attack} in revolver");
     }
 
     private void Start()
     {
         m_animComp.Play(m_baseAnim).Time = 0;
-        Debug.Log($"{m_attack} in revolver start");
     }
-
-    private void FixedUpdate()
-    {
-        Debug.Log($"{m_attack} in revolver");
-    }
-
+    
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         var e = other.GetComponent<EnemyBase>();
