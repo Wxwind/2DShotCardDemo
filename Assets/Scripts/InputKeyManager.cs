@@ -10,10 +10,10 @@ public class InputKeyManager : MonoBehaviour
     [ReadOnly] public KeyCode leftKey;
     [ReadOnly] public KeyCode rightKey;
     [ReadOnly] public KeyCode attackKey;
-    [ReadOnly] public KeyCode abilityKey;
+    [ReadOnly] public KeyCode interactKey;
     [ReadOnly] public KeyCode jumpKey;
     [ReadOnly] public KeyCode discardKey;
-    [ReadOnly] public KeyCode interactKey;
+    [ReadOnly] public KeyCode switchCardKey;
 
     private void Awake()
     {
@@ -35,6 +35,7 @@ public class InputKeyManager : MonoBehaviour
         attackKey = KeyCode.K;
         discardKey = KeyCode.L;
         jumpKey = KeyCode.J;
+        switchCardKey = KeyCode.Q;
         interactKey = KeyCode.E;
     }
 }

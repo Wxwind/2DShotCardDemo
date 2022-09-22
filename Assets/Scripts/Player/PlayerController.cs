@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
     private void SwitchSkillCard()
     {
         if (!m_isCanSwitchCard) return;
-        if (Input.GetKeyDown(InputKeyManager.instance.interactKey))
+        if (Input.GetKeyDown(InputKeyManager.instance.switchCardKey))
         {
             SkillCardManager.instance.SwitchSkillCard();
         }
