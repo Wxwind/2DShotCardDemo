@@ -19,7 +19,7 @@ namespace SkillCardSystem.SkillCard
         public WeaponBase WeaponPre;
         [Title("运行时信息")]
         [ShowInInspector, ReadOnly] protected WeaponBase m_weapon;
-        [SerializeField] protected Transform m_weaponSlot;
+        [ShowInInspector, ReadOnly] protected Transform m_weaponSlot;
 
         public WeaponBase Weapon => m_weapon;
 

@@ -149,6 +149,7 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 0bb55e753dcccc84e977200c7045525f, type: 2}
     _Speed: 1
     _NormalizedStartTime: NaN
+  RevolverDiscardBulletPre: {fileID: 1243066240494444067, guid: bdab3a47c4d04b24c8b98ef22062b0a5, type: 3}
 --- !u!114 &468504309882209512
 MonoBehaviour:
   m_ObjectHideFlags: 0

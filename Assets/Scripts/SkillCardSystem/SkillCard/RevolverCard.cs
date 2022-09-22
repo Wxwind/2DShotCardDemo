@@ -1,4 +1,7 @@
-﻿namespace SkillCardSystem.SkillCard
+﻿using SkillCardSystem.Weapon;
+using UnityEngine;
+
+namespace SkillCardSystem.SkillCard
 {
     public class RevolverCard : SkillCardBase
     {
@@ -20,7 +23,11 @@
 
         public override void OnDiscord()
         {
-            OnDestroySelf();
+            if (m_weapon is RevolverWeapon t)
+            {
+                t.ShotDicardBullet();
+                SkillCardManager.instance.OnMainCardExhausted();
+            }
         }
 
         public override void OnSwitchOut()

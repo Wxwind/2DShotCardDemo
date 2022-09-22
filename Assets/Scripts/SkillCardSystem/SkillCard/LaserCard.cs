@@ -1,4 +1,6 @@
-﻿namespace SkillCardSystem.SkillCard
+﻿using Utils;
+
+namespace SkillCardSystem.SkillCard
 {
     public class LaserCard:SkillCardBase
     {
@@ -21,7 +23,11 @@
 
         public override void OnDiscord()
         {
-            OnDestroySelf();
+            if (SkillCardManager.instance.SpareSkillCard != null&&SkillCardManager.instance.MainSkillCard==this)
+            {
+                SkillCardManager.instance.ReplaceMainCard(SkillCardManager.instance.SpareSkillCard.Id);
+            }
+            else LogHelper.LogInfo("镭射卡牌无法弃牌，因为没有副卡牌可以变身");
         }
 
         public override void OnSwitchOut()

@@ -15,7 +15,7 @@ namespace Enemy
             m_father = father;
             for (int i = 0; i < size; i++)
             {
-                var go = GameObject.Instantiate(enemyPre.gameObject,father).GetComponent<T>();
+                var go = GameObject.Instantiate(enemyPre,father).GetComponent<T>();
                 go.gameObject.SetActive(false);
                 pool.Enqueue(go);
             }

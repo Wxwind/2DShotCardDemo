@@ -15,21 +15,19 @@ namespace SkillCardSystem.Bullet
         private Timer m_lifeTimer;
         
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             m_rbComp = GetComponent<Rigidbody2D>();
             m_lifeTimer = new Timer(m_lifeTime, OnDestroySelf,true);
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
            m_lifeTimer.Tick(Time.deltaTime);
         }
 
-        public virtual void Set(int attack, float speed, Vector2 direction)
+        public virtual void Set(Vector2 direction)
         {
-            m_attack = attack;
-            m_speed = speed;
             m_rbComp.velocity = direction * m_speed;
         }
 

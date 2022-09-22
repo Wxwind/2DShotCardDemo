@@ -455,8 +455,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -23.94366, y: 7.776727}
-      - {x: -24.08534, y: -6.1278625}
-      - {x: 22.129251, y: -6.271616}
+      - {x: -23.983503, y: -5.936915}
+      - {x: 21.997711, y: -5.900334}
       - {x: 22.013792, y: 7.98046}
 --- !u!1 &226721332
 GameObject:
@@ -605,7 +605,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291250743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.29, y: -1.08, z: 0}
+  m_LocalPosition: {x: -9.36, y: -1.17, z: 0}
   m_LocalScale: {x: 0.6788, y: 1.464, z: 1}
   m_Children:
   - {fileID: 1630687941}
@@ -833,10 +833,10 @@ MonoBehaviour:
   leftKey: 0
   rightKey: 0
   attackKey: 0
-  abilityKey: 0
+  interactKey: 0
   jumpKey: 0
   discardKey: 0
-  interactKey: 0
+  switchCardKey: 0
 --- !u!1 &484003045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1083,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.29, y: -1.08, z: -10}
+  m_LocalPosition: {x: -9.360201, y: -0.91820943, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1116,7 +1116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533297040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.29, y: -1.08, z: -10}
+  m_LocalPosition: {x: -9.36, y: -1.17, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2072142792}
@@ -4960,7 +4960,7 @@ GameObject:
   - component: {fileID: 1000750556}
   - component: {fileID: 1000750557}
   m_Layer: 0
-  m_Name: SkillCardManager
+  m_Name: SkillCardDataManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

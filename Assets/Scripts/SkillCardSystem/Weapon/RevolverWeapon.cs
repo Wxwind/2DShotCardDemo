@@ -1,17 +1,21 @@
-﻿namespace SkillCardSystem.Weapon
+﻿using Sirenix.OdinInspector;
+using SkillCardSystem.Bullet;
+using UnityEngine;
+
+namespace SkillCardSystem.Weapon
 {
     public class RevolverWeapon:WeaponBase
     {
-        public override void Shot()
-        {
-            base.Shot();
-        }
+        [Title("子弹设置")]
+        [SerializeField] protected RevolverDiscardBullet RevolverDiscardBulletPre;
 
-        public void Set(float bulletSpeed)
+        public void ShotDicardBullet()
         {
-            this.m_bulletSpeed = bulletSpeed;
+            var go=Instantiate(RevolverDiscardBulletPre,transform.position,Quaternion.identity,m_bulletParent.transform);
+            var b=go.GetComponent<BulletBase>();
+            b.Set(m_player.FaceDir);
         }
-
+        
         public void ReLoad()
         {
             m_nowBulletCount = m_bulletCapacity;

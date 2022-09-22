@@ -14,10 +14,8 @@ namespace SkillCardSystem.Weapon
         [Title("Base子弹设置")] 
         [SerializeField] protected BulletBase bulletPre;
         [SerializeField] protected float m_shotCD = 1.0f;
-        [SerializeField] protected float m_bulletSpeed;
-        [SerializeField] protected int m_bulletAttack;
         [SerializeField] protected int m_bulletCapacity;
-        
+
         [Title("音频设置")] 
         [SerializeField]protected string s_shootAudioName = "Weapon_Shoot_Default";
 
@@ -76,7 +74,7 @@ namespace SkillCardSystem.Weapon
                 m_shotTimer.ReRun();
                 var go=Instantiate(bulletPre,transform.position,Quaternion.identity,m_bulletParent.transform);
                 var b=go.GetComponent<BulletBase>();
-                b.Set(m_bulletAttack,m_bulletSpeed, m_player.FaceDir);
+                b.Set( m_player.FaceDir);
                 m_nowBulletCount-=1;
                 AudioManager.instance.PlaySFXAudio(s_shootAudioName);
                 if (m_nowBulletCount<=0)

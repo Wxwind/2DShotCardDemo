@@ -17,6 +17,9 @@ namespace SkillCardSystem
         [ReadOnly, ShowInInspector]private SkillCardBase m_mainSkillCard;
         [ReadOnly, ShowInInspector]private SkillCardBase m_spareSkillCard;
 
+        public SkillCardBase MainSkillCard => m_mainSkillCard;
+        public SkillCardBase SpareSkillCard => m_spareSkillCard;
+
         public WeaponBase NowWeapon
         {
             get
@@ -53,6 +56,13 @@ namespace SkillCardSystem
                 LogHelper.LogError($"SkillCardManager:不存在id为{cardId}的卡片 in CardLibrary");
                 return false;
             }
+
+            if (m_mainSkillCard!=null&&m_spareSkillCard!=null)
+            {
+                LogHelper.LogInfo("SkillCardManager:当前卡牌数量已满");
+                return false;
+            }
+            
             var go = Instantiate(c.gameObject, transform);
             var skillCardComp = go.GetComponent<SkillCardBase>();
             skillCardComp.OnInit();
@@ -73,7 +83,7 @@ namespace SkillCardSystem
                 UpdateUI();
                 return true;
             }
-            LogHelper.LogInfo("SkillCardManager:当前卡牌数量已满");
+            
             return false;
         }
 
@@ -96,10 +106,10 @@ namespace SkillCardSystem
         {
             if (m_mainSkillCard != null)
             {
-                m_mainSkillCard.OnDiscord();
                 LogHelper.LogInfo($"SkillCardManager:触发{m_mainSkillCard.Name}弃牌效果");
+                m_mainSkillCard.OnDiscord();
             }
-            OnMainCardExhausted();
+            UpdateUI();
         }
 
         /// <summary>
@@ -130,8 +140,34 @@ namespace SkillCardSystem
             AddCard(cardId);
         }
 
+        public void ReplaceMainCard(string cardId)
+        {
+            if (m_mainSkillCard!=null)
+            {
+                m_mainSkillCard.OnDestroySelf();
+                m_mainSkillCard = ForceAddCardToMain(cardId);
+            }
+        }
+
+        private SkillCardBase ForceAddCardToMain(string cardId)
+        {
+            if (!CardLibrary.instance.TryGetCard(cardId, out var c))
+            {
+                LogHelper.LogError($"SkillCardManager:不存在id为{cardId}的卡片 in CardLibrary");
+                return null;
+            }
+            var go = Instantiate(c.gameObject, transform);
+            var skillCardComp = go.GetComponent<SkillCardBase>();
+            skillCardComp.OnInit();
+            skillCardComp.OnEnterMainCardSlot();
+            m_mainSkillCard = skillCardComp;
+            LogHelper.LogInfo($"新的卡牌{cardId} 强制进入主卡牌位");
+            UpdateUI();
+            return m_mainSkillCard;
+        }
+
         /// <summary>
-        /// 销毁MainCard，切换至SpareCard(如果有的话)，并刷新UI
+        /// 销毁MainCard，切换至SpareCard(如果有的话)，并刷新UI;由卡牌自行调用，用于比如卡牌弃牌能力为替换成其他一张卡牌
         /// </summary>
         public void OnMainCardExhausted()
         {
@@ -143,7 +179,6 @@ namespace SkillCardSystem
                 m_mainSkillCard = m_spareSkillCard;
                 m_spareSkillCard = null;
             }
-            UpdateUI();
         }
 
         private bool HasMaxCards()

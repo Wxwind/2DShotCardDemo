@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_attack: 10
-  m_speed: 4
+  m_speed: 6
   m_lifeTime: 5

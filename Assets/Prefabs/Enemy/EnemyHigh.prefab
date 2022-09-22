@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9378c75c1021bd44e993184dab72fa50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxBlood: 30
+  m_maxBlood: 50
   m_attack: 10
   m_freezeTime: 0.2
   CollectableCardPre: {fileID: 812595118621095333, guid: 1854dced2d830a54f9d15a390c2d9f44, type: 3}
