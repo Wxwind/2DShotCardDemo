@@ -7,23 +7,30 @@ namespace Enemy
 {
     public abstract class EnemyBase : MonoBehaviour
     {
-        [Title("基础设置")]
-        [SerializeField] protected int m_maxBlood;
+        [Title("基础设置")] [SerializeField] protected int m_maxBlood;
         [SerializeField] protected int m_attack;
-        [SerializeField] protected float m_freezeTime=0.2f;
-        [Title("运行时信息")]
-        [ShowInInspector, ReadOnly] protected Rigidbody2D m_rbComp;
+        [SerializeField] protected float m_freezeTime = 0.2f;
+        [SerializeField] protected GameObject CollectableCardPre;
+
+        [Title("运行时信息")] [ShowInInspector, ReadOnly]
+        protected Rigidbody2D m_rbComp;
+
         [ShowInInspector, ReadOnly] protected SpriteRenderer m_srComp;
         [ShowInInspector, ReadOnly] protected Color m_originColor;
         [ShowInInspector, ReadOnly] protected Color m_hurtColor = Color.white;
         [ShowInInspector, ReadOnly] protected int m_nowBlood;
         [ShowInInspector, ReadOnly] protected PlayerController m_playerController;
-        protected bool m_isInHurted=false;
+        protected bool m_isInHurted = false;
         protected Timer m_setUnHurtStateTimer;
+        private bool m_isBringCard=false;
+        private Action ReturnToPoolFunc;
 
-        public void OnInit(PlayerController player)
+        public void OnInit(PlayerController player, Vector3 pos,bool isBringCard,Action ReturnToPool)
         {
             m_playerController = player;
+            transform.position = pos;
+            ReturnToPoolFunc = ReturnToPool;
+            m_isBringCard = isBringCard;
         }
 
 
@@ -61,14 +68,19 @@ namespace Enemy
             if (!m_isInHurted)
             {
                 m_isInHurted = true;
-                m_srComp.color= m_hurtColor;
+                m_srComp.color = m_hurtColor;
                 m_setUnHurtStateTimer.ReRun();
             }
         }
 
         protected virtual void OnDeath()
         {
-            Destroy(gameObject);
+            if (m_isBringCard)
+            {
+                var card=Instantiate(CollectableCardPre,GameManager.instance.LevelManager.transform);
+                card.transform.position = transform.position;
+            }
+            ReturnToPoolFunc?.Invoke();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

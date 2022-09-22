@@ -60,10 +60,11 @@ public class Timer
 
     private void End()
     {
-        OnComplete?.Invoke();
         IsRunning = false;
         IsFinished = true;
+        OnComplete?.Invoke();
     }
+
 
     public void ReRun()
     {

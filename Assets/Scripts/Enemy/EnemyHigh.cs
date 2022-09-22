@@ -37,14 +37,12 @@ namespace Enemy
             {
                 int isPlayerInRight = m_playerController.transform.position.x >= transform.position.x ? 1 : -1;
                 m_rbComp.velocity = new Vector2(jumpSpeed.x* isPlayerInRight,jumpSpeed.y);
-                LogHelper.LogInfo("enemy jump");
                 m_isCanJump = false;
                 m_jumpTimer.ReRun();
             }
             else if (!m_isInFreeze&&m_isCanJump)
             {
                 m_rbComp.velocity = jumpSpeed;
-                LogHelper.LogInfo("enemy jump");
                 m_isCanJump = false;
                 m_jumpTimer.ReRun();
             }

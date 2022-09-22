@@ -11,8 +11,10 @@ namespace Player
             var c = other.GetComponent<CollectableCardBase>();
             if (c!=null)
             {
-                SkillCardManager.instance.AddCard(c.CardName);
-                Destroy(c.gameObject);
+                if (SkillCardManager.instance.AddCard(c.CardName))
+                {
+                    Destroy(c.gameObject);
+                }
             }
         }
     }

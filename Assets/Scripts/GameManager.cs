@@ -1,3 +1,4 @@
+using Enemy;
 using TMPro;
 using UnityEngine;
 
@@ -7,9 +8,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text m_countdown;
     [SerializeField] private float m_gameLastTime=60;
     [SerializeField] private GameObject m_endGamePanel;
-    [SerializeField] private PlayerController m_playerController;
+    [SerializeField] private LevelManager m_levelManager;
+    public LevelManager LevelManager=>m_levelManager;
     private Timer m_endGameTimer;
     private float m_remainingTime;
+
+    private bool m_isGameEnd;
+    public bool IsGameEnd=>m_isGameEnd;
 
     private void Awake()
     {
@@ -40,7 +45,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         m_endGamePanel.SetActive(true);
         AudioManager.instance.PauseBGMAudio();
-        m_playerController.enabled = false;
+        m_levelManager.OnEndGame();
+        m_isGameEnd = true;
     }
 
     void UpdateUI()
